@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+const itemExercises = document.querySelectorAll('.item-exercises');
 const filterButtons = document.querySelector('.filter-buttons');
 const exerciseFiltersList = document.querySelector('.exercise-filters-list');
 const pagination = document.querySelector('.pagination');
@@ -8,9 +8,9 @@ let filterValueDefault = 'Muscles';
 let currentPage = 1;
 let screenWidth = window.innerWidth;
 let currentLimit = 0;
+const paginationPageBtn = document.querySelector('.pagination-btn');
 
 filterButtons.addEventListener('click', filterBtnClick);
-
 if (screenWidth <= 375) {
   currentLimit = 8;
 } else if (screenWidth <= 768) {
@@ -37,12 +37,20 @@ async function getExercises() {
 
 async function filterBtnClick(event) {
   event.preventDefault();
+
   currentPage = 1;
   const filterValue = event.target;
   const qwer = filterValue.dataset.filter;
   filterValueDefault = qwer;
   exerciseFiltersList.innerHTML = '';
-  console.log(qwer);
+  Array.from(event.currentTarget.children).map(item => {
+    if (item.textContent !== event.target.textContent) {
+      item.classList.remove('button-is-active');
+    } else {
+      event.target.classList.add('button-is-active');
+    }
+  });
+  console.log(event.target.textContent.trim());
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
@@ -50,8 +58,9 @@ async function filterBtnClick(event) {
     getExercises(qwer).then(data => {
       const { results, totalPages, page } = data;
       markupExercises(results);
-      if (totalPages > 1) {
+      if (1) {
         const pag = paginationPages(page, totalPages);
+
         pagination.innerHTML = pag;
       } else {
         pagination.innerHTML = '';
@@ -79,28 +88,31 @@ function markupExercises(results) {
 
 function paginationPages(page, totalPages) {
   let paginationHtml = '';
+
   for (let i = 1; i <= totalPages; i += 1) {
-    paginationHtml += `<button class="pagination-btn" type="button">${i}</button>`;
+    paginationHtml += `<button class="pagination-btn pagination-btn-is-active" type="button">${i}</button>`;
   }
   return paginationHtml;
 }
 
 async function onPaginationPages(e) {
-  console.log(e.target.textContent);
-  console.log(currentPage);
   currentPage = e.target.textContent;
+  Array.from(e.currentTarget.children).map(item => {
+    if (item.textContent !== currentPage) {
+      console.log(item.textContent);
+      console.log(e.target.textContent);
+      item.classList.remove('pagination-btn-is-active');
+    } else {
+      e.target.classList.add('pagination-btn-is-active');
+    }
+  });
   exerciseFiltersList.innerHTML = '';
   try {
     const { results, page, totalPages } = await getExercises();
-    console.log(results);
-    console.log(page);
-    console.log(totalPages);
-    const filter = results[0].filter;
-    console.log(filter);
-
     if (page === totalPages) {
       return;
     }
+
     markupExercises(results);
   } catch (error) {
     console.log(error);
@@ -108,3 +120,4 @@ async function onPaginationPages(e) {
 }
 
 pagination.addEventListener('click', onPaginationPages);
+// sasdswe2erfev
