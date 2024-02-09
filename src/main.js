@@ -19,10 +19,28 @@ if (screenWidth <= 375) {
   currentLimit = 12;
 }
 
+async function getExercises() {
+  try {
+    const response = await axios.get(`${BASE_URL}/filters`, {
+      params: {
+        filter: filterValueDefault,
+        page: currentPage,
+        limit: currentLimit,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function filterBtnClick(event) {
   event.preventDefault();
+  currentPage = 1;
   const filterValue = event.target;
   const qwer = filterValue.dataset.filter;
+  filterValueDefault = qwer;
   exerciseFiltersList.innerHTML = '';
   console.log(qwer);
   if (event.target.tagName !== 'BUTTON') {
@@ -39,22 +57,6 @@ async function filterBtnClick(event) {
         pagination.innerHTML = '';
       }
     });
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function getExercises(filter = filterValueDefault) {
-  try {
-    const response = await axios.get(`${BASE_URL}/filters`, {
-      params: {
-        filter: filter,
-        page: currentPage,
-        limit: currentLimit,
-      },
-    });
-
-    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -93,6 +95,9 @@ async function onPaginationPages(e) {
     console.log(results);
     console.log(page);
     console.log(totalPages);
+    const filter = results[0].filter;
+    console.log(filter);
+
     if (page === totalPages) {
       return;
     }
