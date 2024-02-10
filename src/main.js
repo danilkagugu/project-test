@@ -50,7 +50,6 @@ async function filterBtnClick(event) {
       event.target.classList.add('button-is-active');
     }
   });
-  console.log(event.target.textContent.trim());
   if (event.target.tagName !== 'BUTTON') {
     return;
   }
@@ -60,7 +59,6 @@ async function filterBtnClick(event) {
       markupExercises(results);
       if (1) {
         const pag = paginationPages(page, totalPages);
-
         pagination.innerHTML = pag;
       } else {
         pagination.innerHTML = '';
@@ -99,8 +97,6 @@ async function onPaginationPages(e) {
   currentPage = e.target.textContent;
   Array.from(e.currentTarget.children).map(item => {
     if (item.textContent !== currentPage) {
-      console.log(item.textContent);
-      console.log(e.target.textContent);
       item.classList.remove('pagination-btn-is-active');
     } else {
       e.target.classList.add('pagination-btn-is-active');
@@ -121,3 +117,21 @@ async function onPaginationPages(e) {
 
 pagination.addEventListener('click', onPaginationPages);
 // sasdswe2erfev
+
+fetchDefaultApiUrl();
+async function fetchDefaultApiUrl() {
+  try {
+    const response = await getExercises().then(data => {
+      const { results, totalPages, page } = data;
+      if (results && results.length > 0) {
+        markupExercises(results);
+        const pag = paginationPages(page, totalPages);
+        pagination.innerHTML = pag;
+      } else {
+        console.error('No exercises found.');
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching exercises:', error);
+  }
+}
