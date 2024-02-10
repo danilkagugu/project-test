@@ -28,14 +28,14 @@ const ul = document.querySelector('.favorites-list');
 const deleteCards = document.querySelectorAll('.favorites-list-item');
 
 /**перевіряє чи є в локалсторідж запис і якщо є, то малює картки, інакше показує повідомлення */
-
-if (!storageItem || parsedItem.length == 0) {
-  messageInfo.classList.add('is-open-message-favorites');
-  paginationBlock.classList.add('close');
-} else if (storageItem) {
-  try {
-    parsedItem.forEach(elem => {
-      const markup = `<li class="favorites-list-item" id="${elem.id}">
+if (result === '/page-2.html') {
+  if (!storageItem || parsedItem.length == 0) {
+    messageInfo.classList.add('is-open-message-favorites');
+    paginationBlock.classList.add('close');
+  } else if (storageItem) {
+    try {
+      parsedItem.forEach(elem => {
+        const markup = `<li class="favorites-list-item" id="${elem.id}">
             <div class="favorites-card-header">
                 <div class="favorites-workout">
                     <p>WORKOUT</p>
@@ -83,11 +83,12 @@ if (!storageItem || parsedItem.length == 0) {
             </div>
         </li>`;
 
-      favoritesList.insertAdjacentHTML('beforeend', markup);
-    });
-  } catch (error) {
-    console.log(error.name);
-    console.log(error.message);
+        favoritesList.insertAdjacentHTML('beforeend', markup);
+      });
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
   }
 }
 
@@ -243,9 +244,7 @@ if (result === '/page-2.html') {
 
 //**Ігорю на кнопку*/
 
-favorites.addEventListener('click', event => {
-  event.preventDefault();
-
+favorites.addEventListener('click', () => {
   if (favorites.textContent.trim() == 'Add to favorites') {
     parsedItem.push({
       id: '64f389465ae26083f39b17df', //id

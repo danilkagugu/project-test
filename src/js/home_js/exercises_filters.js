@@ -150,4 +150,3 @@ function paginationPages(page, totalPages) {
 }
 
 export { onPaginationPages };
-export { paginationPages };

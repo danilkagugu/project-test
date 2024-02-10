@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { onPaginationPages } from './exercises_filters';
-import { paginationPages } from './exercises_filters';
 
 const filterButtons = document.querySelector('.FilterButtons');
 const exerciseFiltersList = document.querySelector('.ExerciseFiltersList');
@@ -77,7 +76,7 @@ async function onCardClick(event) {
     pagination.innerHTML = '';
     if (totalPages > 1) {
       // const pag це буде рядок розмітки кнопок(нумерація сторінок)
-      const pag = paginationPages(page, totalPages);
+      const pag = paginationPages(totalPages);
       console.log(pag);
       // додаємо в div розмітку сторінок
       pagination.innerHTML = pag;
@@ -222,7 +221,7 @@ async function onBtnClick(event) {
     // пагінація
     if (totalPages > 1) {
       // const pag це буде рядок розмітки кнопок(нумерація сторінок)
-      const pag = paginationPages(page, totalPages);
+      const pag = paginationPages(totalPages);
       console.log(pag);
       // додаємо в div розмітку сторінок
       pagination.innerHTML = pag;
@@ -282,14 +281,14 @@ function markupExercise(results) {
 // --------------------------------------------------------------------------------------
 
 // ПАГІНАЦІЯ
-// function paginationPages(totalPages) {
-//   let paginationHtml = '';
-//   for (let i = 1; i <= totalPages; i += 1) {
-//     paginationHtml += `<button class="pagination-btn" type="button">${i}</button>`;
-//   }
-//   // в залежності від к-ті сторінок повертає таку кількість кнопок в розмітці
-//   return paginationHtml;
-// }
+function paginationPages(totalPages) {
+  let paginationHtml = '';
+  for (let i = 1; i <= totalPages; i += 1) {
+    paginationHtml += `<button class="pagination-btn" type="button">${i}</button>`;
+  }
+  // в залежності від к-ті сторінок повертає таку кількість кнопок в розмітці
+  return paginationHtml;
+}
 
 async function onPaginationPage(e) {
   // при кліку на цифру сторінки будемо діставати цифру (текст-контент кнопки: 1, 4, 7...)
@@ -299,7 +298,11 @@ async function onPaginationPage(e) {
   // exerciseFiltersList.innerHTML = '';
   try {
     // запит на картки по фільтру
-  
+    const { results, page, totalPages } = await getExercisesByFilter(
+      filterValue,
+      nameValue,
+      currentPage
+    );
 
     // const filter = results[0].filter;
 
