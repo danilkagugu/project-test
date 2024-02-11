@@ -15,13 +15,14 @@ let nameValue;
 exerciseFiltersList.addEventListener('click', onCardClick);
 
 async function onCardClick(event) {
-  exerciseFiltersList.classList.add('ExerciseCategoryList');
+  exerciseFiltersList.removeEventListener('click', onCardClick);
   pagination.removeEventListener('click', onPaginationFilterPages);
   pagination.removeEventListener('click', onPaginationPagesbyFilter);
   if (event.target === event.currentTarget) {
     return;
   }
   exerciseFiltersList.classList.add('ExerciseCategoryList'); // при кліку на картку додаємо клас до ul (бо він має інші стилі)
+  exerciseFiltersList.classList.remove('ExerciseFiltersList');
   const liEl = event.target.closest('.ExercisesItem'); // при кліку на картку шукаємо найближчий елемент у якого буде заданий селектор (це li)
   filterValue = liEl.dataset.filter; //Muscles   // тепер можемо отримати li дата-атрибути
   nameValue = liEl.dataset.name; // abductors
@@ -33,6 +34,9 @@ async function onCardClick(event) {
       nameValue
     );
     exerciseFiltersList.innerHTML = createMarkUp(results); // це буде масив об'єктів
+    const StartBtn = document.querySelector('.StartBtn');
+    // треба імпортувати функцію onStartBtnClick -------
+    // StartBtn.addEventListener('click', onStartBtnClick)
 
     // ------------------------------new КОД ДЛЯ ДЕНИСА --- ПОМИЛКА--- ПОКИ КОМЕНТУЮ---------------------------------------
     // const ExercisesForm = document.querySelector('.ExercisesForm');
@@ -121,9 +125,9 @@ async function getExercisesByFilter(filterValue, nameValue, currentPage) {
   }
 }
 
-function createMarkUp(array) {
+export function createMarkUp(array) {
   const markup = array
-    .map(({ rating, name, burnedCalories, time, bodyPart, target }) => {
+    .map(({ rating, name, burnedCalories, time, bodyPart, target, _id }) => {
       return `<li class="WorkoutCard">
       <div class='CardHeader'>
         <div class='WorkoutWrapper'>
@@ -133,7 +137,7 @@ function createMarkUp(array) {
           <use href='./img/symbol-defs.svg#icon-star'></use>
         </svg></div>
         </div>
-        <div class='StartBtn'>
+        <div class='StartBtn' data-id='${_id}'>
           <p>Start</p>
           <svg width='13' height='13'>
           <use href='./img/symbol-defs.svg#icon-arrow'></use>
@@ -142,7 +146,7 @@ function createMarkUp(array) {
       </div>
       <div class='CardMainPart'>
       <div class='RunIconWrapper'><svg width='14' height='14'>
-          <use href='./img/symbol-defs.svg#icon-running'></use>
+          <use href='/img/symbol-defs.svg#icon-running'></use>
         </svg></div>
         <p class='MainPartName'>${name}</p>
       </div>
@@ -168,7 +172,7 @@ function updateExercisesHeaderMarkup(nameValue) {
   return `<div>
   <h2 class="TitleExercises">Exercises / <span class="NameValue"> ${nameValue}</span></h2>
   <div class="ExercisesHeared">
-  <div class="ListExercises FilterButtons" id='FilterBtn'>
+  <div id='FilterBtn'>
     <button class="ItemExercises" data-filter="Muscles" id='MusclesBtn'>Muscles</button>
     <button class="ItemExercises" data-filter="Body parts" id='BodyPartBtn'>Body parts</button>
     <button class="ItemExercises" data-filter="Equipment" id='EquipmentBtn'>Equipment</button>
@@ -189,7 +193,9 @@ function updateExercisesHeaderMarkup(nameValue) {
 // це виклик функції Данила. Треба щоб він зробив експорт
 // функція, яка спрацьовує коли ми клікаємо по фільтру (Muscle, Body Part, Equipment) і повертаємось назад
 async function onBtnClick(event) {
+  exerciseFiltersList.addEventListener('click', onCardClick);
   exerciseFiltersList.classList.remove('ExerciseCategoryList');
+  exerciseFiltersList.classList.add('ExerciseFiltersList');
   currentPage = 1; // робимо поточну сторінку першою
   pagination.removeEventListener('click', onPaginationSubcategoriesPage); // видаляємо з нумерації сторінок слухача попереднього
   Array.from(event.currentTarget.children).map(item => {
@@ -236,7 +242,7 @@ async function getExercise(filter = filterValueDefault) {
     console.log(error);
   }
 }
-
+/!Цю функцію я імпортував у себе/;
 // function markupExercise(results) {
 //   const markup = results
 //     .map(
@@ -256,6 +262,8 @@ async function getExercise(filter = filterValueDefault) {
 //   return markup;
 // }
 // ---------------------------------------------------ПАГІНАЦІЯ------------------------------------------------------------
+
+/!Цю функцію я імпортував у себе/;
 // function paginationPages(totalPages) {
 //   let paginationHtml = '';
 //   for (let i = 1; i <= totalPages; i += 1) {
@@ -265,6 +273,8 @@ async function getExercise(filter = filterValueDefault) {
 //   return paginationHtml; // в залежності від к-ті сторінок повертає таку кількість кнопок в розмітці
 // }
 
+/! В цій функції я змінив назву, була onPaginationPage/;
+//----
 async function onPaginationSubcategoriesPage(e) {
   if (e.target.tagName !== 'BUTTON') {
     return;
@@ -296,6 +306,6 @@ async function onPaginationPagesbyFilter(e) {
   }
 }
 
-export { createMarkUp };
-
 // Импорт необходимых библиотек
+
+// export { createMarkUp };

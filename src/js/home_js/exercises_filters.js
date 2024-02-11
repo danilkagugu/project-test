@@ -45,6 +45,7 @@ async function fetchDefaultApiUrl() {
       const { results, totalPages, page } = data;
       if (results && results.length > 0) {
         exerciseFiltersList.innerHTML = markupExercises(results);
+
         const pag = paginationPages(page, totalPages);
         pagination.innerHTML = pag;
       } else {
@@ -98,9 +99,6 @@ async function filterBtnClick(event) {
 //-----------------------------------------Функція перехід по сторінкам------------------------------------------------------
 
 async function onPaginationFilterPages(e) {
-  if (e.target.tagName !== 'BUTTON') {
-    return;
-  }
   currentPage = e.target.textContent;
   Array.from(e.currentTarget.children).map(item => {
     if (item.textContent !== currentPage) {
@@ -109,10 +107,9 @@ async function onPaginationFilterPages(e) {
       e.target.classList.add('PaginationBtnIsActive');
     }
   });
-  // exerciseFiltersList.innerHTML = '';
+  exerciseFiltersList.innerHTML = '';
   try {
     const { results, page, totalPages } = await getExercises();
-    console.log(e.target);
     if (page === totalPages) {
       return;
     }
@@ -122,24 +119,6 @@ async function onPaginationFilterPages(e) {
     console.log(error);
   }
 }
-
-// async function onPaginationPage(e) {
-//   if (e.target.tagName !== 'BUTTON') {
-//     return;
-//   }
-//   currentPage = e.target.textContent; // при кліку на цифру сторінки будемо діставати цифру (текст-контент кнопки: 1, 4, 7...)
-//   try {
-//     // запит на картки по фільтру
-//     const { results } = await getExercisesByFilter(
-//       filterValue,
-//       nameValue,
-//       currentPage
-//     );
-//     exerciseFiltersList.innerHTML = createMarkUp(results); // робимо розмітку підкатегорій відповідно до номеру сторінки
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
 
 //---------------------------------------------------Розмітка Muscles, Body parts, Equipment--------------------------------------------
 
@@ -161,25 +140,6 @@ function markupExercises(results) {
     .join('');
   return markup;
 }
-
-// function markupExercises(results) {
-//   const markup = results
-//     .map(
-//       ({
-//         name,
-//         filter,
-//         imgUrl,
-//       }) => ` <li class="FilterList ExercisesItem" data-filter='${filter}' data-name='${name}'>
-//         <img class="ImgExercises" src="${imgUrl}" alt="${filter}">
-//         <div class="FilterText">
-//           <p class="FilterExercises">${name}</p>
-//           <p class="FilterName">${filter}</p>
-//         </div>
-//       </li>`
-//     )
-//     .join('');
-//   exerciseFiltersList.insertAdjacentHTML('beforeend', markup);
-// }
 //---------------------------------------------------Розмітка номерів сторінки--------------------------------------------
 
 function paginationPages(page, totalPages) {
