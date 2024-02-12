@@ -1,52 +1,41 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
+import icons from '/img/symbol-defs.svg';
 
 const modalBackdrop = document.querySelector('.Backdrop');
-const card = document.querySelector('.Modal');
-const button = document.querySelector('.SearchButton');
-const modalClose = document.querySelector('.ModalClose');
-const addRemoveFavorites = document.querySelector('.AddRemoveFavorites');
+// const card = document.querySelector('.Modal');
+const button = document.querySelector('.ExerciseFiltersList');
+const BASE_URL = 'https://energyflow.b.goit.study/api';
+
+// const modalClose = document.querySelector('.ModalClose');
+// const addRemoveFavorites = document.querySelector('.AddRemoveFavorites');
 const openClass = 'IsOpen';
 let cardObj = {};
 
-button.addEventListener('click', modalCard);
+button.addEventListener('click', clickStart);
 
-async function modalCard() {
+async function clickStart(event) {
+  if (event.target.nodeName !== 'BUTTON') {
+    return;
+  }
+  const res = event.target.closest('li').id;
+  console.log(res);
   try {
-    cardObj = await fetchImages();
-    showModal();
-    displayImages(cardObj);
-    addRemoveFavorites.addEventListener('submit', addFavorites);
-
-    card.addEventListener('click', hideModal);
-  } catch (error) {}
-}
-
-function modalCloseFunc(event) {
-  if (
-    event.currentTarget === modalClose ||
-    event.key === 'Escape' ||
-    event.target === modalBackdrop
-  ) {
-    hideModal();
+    const obj = await axios.get(`${BASE_URL}/exercises/${res}`);
+    console.log(obj);
+    displayImages(obj.data);
+    modalBackdrop.classList.add('IsOpen');
+  } catch (error) {
+    console.log(error);
   }
 }
 
-async function fetchImages() {
-  const url = `https://energyflow.b.goit.study/api/exercises/64f389465ae26083f39b17a4`;
-
-  try {
-    const response = await axios.get(url);
-
-    return response.data;
-  } catch (error) {}
-}
-
 function displayImages(cardObj) {
-  card.innerHTML = ` <button class="ModalClose" type="button">
+  const markup = ` <div class="Modal">
+  <button class="ModalClose" type="button">
           <svg class="CloseModalIcon" width="8" height="8">
-            <use href="./img/symbol-defs.svg#icon-close"></use>
+            <use href="${icons}#icon-close"></use>
           </svg>
         </button>
   <div class="ModalImage">     
@@ -66,19 +55,7 @@ function displayImages(cardObj) {
   </ul>
   <p class="Description">${cardObj.description}</p>
   <button class="AddRemoveFavorites" type="button">Add to favorites</button>
-  </div>  `;
+  </div>
+  </div> `;
+  modalBackdrop.innerHTML = markup;
 }
-
-function addFavorites() {
-  addRemoveFavorites.innerText = 'Remove from';
-}
-
-function showModal() {
-  modalBackdrop.classList.add(openClass);
-}
-
-function hideModal() {
-  modalBackdrop.classList.remove(openClass);
-}
-
-export { modalCard };
