@@ -10,7 +10,7 @@ const addRemoveFavorites = document.querySelector('.AddRemoveFavorites');
 const openClass = 'IsOpen';
 let cardObj = {};
 
-// button.addEventListener('click', modalCard);
+button.addEventListener('click', modalCard);
 
 async function modalCard() {
   try {
