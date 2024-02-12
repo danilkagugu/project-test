@@ -1,6 +1,7 @@
 import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import icons from '/img/symbol-defs.svg';
 import { onPaginationFilterPages } from './exercises_filters';
 import { paginationPages } from './exercises_filters';
 import { markupExercises } from './exercises_filters';
@@ -116,19 +117,19 @@ function createMarkUp(array) {
           <p class='Workout'>workout</p>
           <div class='RatingWrapper'><p>${rating}</p>
           <svg class='StarIcon' width='13' height='13'>
-            <use href="/img/symbol-defs.svg#icon-star"></use>     
+            <use href="${icons}#icon-star"></use>     
         </svg></div>
         </div>
         <div class='StartBtn' data-id='${_id}'>
           <p>Start</p>
           <svg width='13' height='13'>
-           <use href="/img/symbol-defs.svg#icon-arrow"></use>          
+           <use href="${icons}#icon-arrow"></use>          
         </svg>
         </div>
       </div>
       <div class='CardMainPart'>
       <div class='RunIconWrapper'><svg width='14' height='14'>
-          <use href="/img/symbol-defs.svg#icon-running"></use>
+          <use href="${icons}#icon-running"></use>
         </svg></div>
         <p class='MainPartName'>${name}</p>
       </div>
