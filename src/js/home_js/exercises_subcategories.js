@@ -164,7 +164,7 @@ function updateExercisesHeaderMarkup(nameValue) {
       <input class='SearchInput' name="search" placeholder="Search" type="search" id="search" />
       <button class='SearchButton' type="submit">
         <svg class='IconSearch' width='18' height='18'>
-          <use href='./img/symbol-defs.svg#icon-search'></use>
+          <use href='/img/symbol-defs.svg#icon-search'></use>
         </svg>
       </button>
     </form></div>
