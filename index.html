@@ -11,9 +11,9 @@
     />
     
     <script type="module" crossorigin src="/project-test/assets/vendor-db25513e.js"></script>
-    <script type="module" crossorigin src="/project-test/assets/modal_window-444959db.js"></script>
-    <script type="module" crossorigin src="/project-test/assets/footer-3064bd8e.js"></script>
-    <link rel="stylesheet" href="/project-test/assets/modal_window-e986f5c1.css">
+    <script type="module" crossorigin src="/project-test/assets/modal_window-83bbecc9.js"></script>
+    <script type="module" crossorigin src="/project-test/assets/footer-341fac8e.js"></script>
+    <link rel="stylesheet" href="/project-test/assets/modal_window-b4de9495.css">
     <link rel="stylesheet" href="/project-test/assets/vendor-e5212ee8.css">
   </head>
   <body>
@@ -38,7 +38,7 @@
 
             <ul class="header-menu">
                 <li><a class="header-link current" href="./index.html">Home</a></li>
-                <li><a class="header-link favorites" href="./favorites.html">Favorites</a></li> 
+                <li><a class="header-link favorites" href="./favorites.html">Favorites</a></li>
             </ul>
         </nav>
 
@@ -46,31 +46,30 @@
             <li class="mobile-icons-list">
                 <a href="https://www.instagram.com/goitclub/" target="_blank" class="mobile-icons-link">
                     <svg class="mobile-fill" width="24" height="24">
-                        <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-instagram"></use>
+                        <use href="../../img/symbol-defs.svg#icon-instagram"></use>
                     </svg>
                 </a>
             </li>
             <li class="mobile-icons-list">
                 <a href="https://www.youtube.com/c/GoIT" target="_blank" class="mobile-icons-link">
                     <svg class="mobile-fill" width="24" height="24">
-                        <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-youtube"></use>
+                        <use href="../../img/symbol-defs.svg#icon-youtube"></use>
                     </svg>
                 </a>
             </li>
             <li class="mobile-icons-list">
                 <a href="https://www.facebook.com/goITclub/" target="_blank" class="mobile-icons-link">
                     <svg class="mobile-fill" width="24" height="24">
-                        <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-facebook"></use>
+                        <use href="../../img/symbol-defs.svg#icon-facebook"></use>
                     </svg>
                 </a>
             </li>
         </ul>
-        <button class="mobil-button-menu" type="button">
-            <svg class="mobil-button-menu-svg" xmlns="http://www.w3.org/2000/svg" width="32" height="16"
-                viewBox="0 0 32 16" fill="none">
-                <path d="M28 10.3333H4" stroke="#7E847F" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M28 5H4" stroke="#7E847F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <button class="mobil-button-menu open-mobile-menu" type="button">
+            <svg class="mobil-button-menu-svg open-mobile-menu-btn js-open-menu" width="32" height="16"
+                aria-label="mobile menu open icon">
+                <use href="../../img/symbol-defs.svg#icon-mobile-menu"></use>
+
             </svg>
         </button>
 </header>
@@ -108,25 +107,56 @@
 
 
 </section>
-<!-- <section class="container ">
-    <div class="hero-double">
-        <div class="small-quota">
-            <ul class="quota-list">
-                <li class="quota-item">#Sport</li>
-                <li class="quota-item">#Healthy</li>
-                <li class="quota-item">#Workout</li>
-                <li class="quota-item">#Diet</li>
-            </ul>
-        </div>
-        <div class="container hero-container">
-            <h1 class="hero-text-main">Get <span class="hero-word">Body</span> in shape, Stay healthy</h1>
-            <p class="hero-text">Transform your physique and embrace a healthier lifestyle with our comprehensive
-                fitness and nutrition support..</p>
-        </div>
+<!-- mobile window -->
+<div class="mobile-menu js-menu">
+    <div class="mobile-menu-header">
+        <a class="mobile-menu-logo" href="./index.html">energy.flow</a>
 
+        <button class="mobile-menu-close-button js-close-menu" type="button">
+            <svg class="mobile-close-icon" aria-label="mobile menu close icon" width="20" height="20">
+                <use href="../../img/symbol-defs.svg#icon-close"></use>
+            </svg>
+        </button>
     </div>
 
-</section> -->
+    <div class="mobile-menu-content">
+        <nav class="mobile-menu-nav">
+            <ul class="mobile-menu-list list">
+                <li class="mobile-menu-item header-link current">
+                    <a class="header-menu-link link " href="./index.html">Home</a>
+                </li>
+                <li class="mobile-menu-item header-link favorites">
+                    <a class="header-menu-link link" href="./favorites.html">Favorites</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <ul class="mobile-menu-social-list list">
+        <li class="mobile-menu-social-list-item">
+            <a class="mobile-menu-social-link link" href="https://www.facebook.com/goITclub/" target="_blank">
+                <svg class="mobile-fill-modal" width="25" height="25" aria-label="facebook icon">
+                    <use href="../../img/symbol-defs.svg#icon-facebook"></use>
+                </svg>
+            </a>
+        </li>
+        <li class="mobile-menu-social-list-item">
+            <a class="mobile-menu-social-link link" href="https://www.instagram.com/goitclub/" target="_blank">
+                <svg class="mobile-fill-modal" width="25" height="25" aria-label="instagram icon">
+                    <use href="../../img/symbol-defs.svg#icon-instagram"></use>
+                </svg>
+            </a>
+        </li>
+        <li class="mobile-menu-social-list-item">
+            <a class="mobile-menu-social-link link" href="https://www.youtube.com/c/GoIT" target="_blank">
+                <svg class="mobile-fill-modal" width="25" height="25" aria-label="youtube icon">
+                    <use href="../../img/symbol-defs.svg#icon-youtube"></use>
+                </svg>
+            </a>
+        </li>
+    </ul>
+</div>
     <section class="container containerQuote">
   <div class="Quote">
     <div class="QuoteOne">
@@ -160,10 +190,27 @@
       </button>
       <button class="ItemExercises" data-filter="Body parts">Body parts</button>
       <button class="ItemExercises" data-filter="Equipment">Equipment</button>
+      <form class="ExercisesForm visually-hidden">
+        <label for="#search" class="visually-hidden">Search</label>
+        <input
+          class="SearchInput"
+          name="search"
+          placeholder="Search"
+          type="search"
+          id="search"
+        />
+        <button class="SearchButton" type="submit">
+          <svg class="IconSearch" width="18" height="18">
+            <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-search"></use>
+          </svg>
+        </button>
+      </form>
     </div>
   </div>
   <ul class="ExerciseFiltersList"></ul>
+  <ul class="ExerciseFiltersListSubcategories"></ul>
   <div class="Pagination"></div>
+  <div class="PaginationSubcategories"></div>
 </section>
 
     <section class="DailyNorm">
@@ -189,8 +236,9 @@
   </div>
 </section>
 
-    <section class="FooterSection container">
-  <div class="FootVibe">
+    
+    <footer class="FooterSection container">
+  <div class="FootVibe ">
     <div class="FootInner">
       <a class="FootLogo" href="./index.html">energy.flow</a>
       <ul class="FooterUl">
@@ -199,6 +247,8 @@
             class="FooterSocialItem"
             href="https://www.facebook.com/goITclub/"
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Follow us on Facebook"
           >
             <svg class="FooterSvg" width="20" height="20">
               <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-facebook"></use>
@@ -231,14 +281,14 @@
       </ul>
     </div>
 
-    <div class="FooterSlogo">
+    <div class="FooterSlogo"> 
       <h2 class="FooterH">
         Transforming your <span class="accent">body</span> shape with us
       </h2>
-      <div class="input">
+      <div class="input-subs">
       <p class="FooterP">Subscribe and learn about new exercises!</p>
       <form class="FooterForm">
-        <label class="FooterLabel" for="modal-footer">
+        <label class="FooterLabel" for="modal-footer"  aria-label="modal-footer">
           <input
             class="FormInput"
             type="email"
@@ -255,20 +305,51 @@
     </div>
   </div>
   <div class="FooterText ">
-    <p class="FooterPrivacy">Energy Flow. All rights reserved.</p>
-      <p class="FooterPrivacy ">Privacy Policy <span class="slesh">/</span> Terms of Service</p>
+    <p class="FooterPrivacy upper">Energy Flow. All rights reserved.</p>
+      <div class="regulations">
+      <a
+          class="FooterPolice policy"
+          href="#"
+          target="_blank"
+          >Privacy Policy</a
+        >
+        <p class="policy">/</p>
+        <a
+          class="FooterPolice policy"
+          href="#"
+          target="_blank"
+          >Terms of Service</a
+        >
+    </div>
+
   </div>
 
   </div>
+  </footer>
   <!-- loader -->
   <div class="lodDiv">
     <span class="loader"></span>
   </div>
-</section>
 
-    <!-- <button class="SearchButton" type="button">Search</button> -->
-<div class="Backdrop"></div>
+<!-- scroll up -->
+<div class="ScrollUp visually-hidden">
+  <button class="ScrollUpButton">
+    <svg class="ScrollUpSvg mobile" width="20" height="20">
+      <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-arrow-scrollup"></use>
+    </svg>
 
+    <svg class="ScrollUpSvg tablet" width="40" height="40">
+      <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-arrow-scrollup"></use>
+    </svg>
+
+    <svg class="ScrollUpSvg decktop" width="50" height="50">
+      <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-arrow-scrollup"></use>
+    </svg>
+  </button>
+</div>
+
+
+    <div class="Backdrop"></div>
 
     
     
