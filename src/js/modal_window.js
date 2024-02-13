@@ -6,7 +6,7 @@ import icons from '/img/symbol-defs.svg';
 
 const modalBackdrop = document.querySelector('.Backdrop');
 const card = document.querySelector('.Modal');
-const button = document.querySelector('.ExerciseFiltersList');
+const button = document.querySelector('.ExerciseFiltersListSubcategories');
 const modalClose = document.querySelector('.ModalClose');
 const addRemoveFavorites = document.querySelector('.AddRemoveFavorites');
 
@@ -22,7 +22,7 @@ async function modalCard(event) {
     return;
   }
   const res = event.target.closest('li').id;
-
+  console.log(res);
   try {
     cardObj = await fetchImages(res);
     showModal();
