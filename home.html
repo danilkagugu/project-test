@@ -11,9 +11,9 @@
     />
     
     <script type="module" crossorigin src="/project-test/assets/vendor-db25513e.js"></script>
-    <script type="module" crossorigin src="/project-test/assets/modal_window-83bbecc9.js"></script>
-    <script type="module" crossorigin src="/project-test/assets/footer-341fac8e.js"></script>
-    <link rel="stylesheet" href="/project-test/assets/modal_window-b4de9495.css">
+    <script type="module" crossorigin src="/project-test/assets/modal_window-a74575d8.js"></script>
+    <script type="module" crossorigin src="/project-test/assets/footer-c22bfeec.js"></script>
+    <link rel="stylesheet" href="/project-test/assets/modal_window-250b7ac2.css">
     <link rel="stylesheet" href="/project-test/assets/vendor-e5212ee8.css">
   </head>
   <body>
@@ -171,11 +171,15 @@
   <div class="ExercisesHead">
     <h2 class="TitleExercises">Exercises</h2>
     <div class="ListExercises FilterButtons">
-      <button class="ItemExercises ButtonIsActive" data-filter="Muscles">
-        Muscles
-      </button>
-      <button class="ItemExercises" data-filter="Body parts">Body parts</button>
-      <button class="ItemExercises" data-filter="Equipment">Equipment</button>
+      <div class="buttons-container">
+        <button class="ItemExercises ButtonIsActive" data-filter="Muscles">
+          Muscles
+        </button>
+        <button class="ItemExercises" data-filter="Body parts">
+          Body parts
+        </button>
+        <button class="ItemExercises" data-filter="Equipment">Equipment</button>
+      </div>
       <form class="ExercisesForm visually-hidden">
         <label for="#search" class="visually-hidden">Search</label>
         <input
@@ -197,6 +201,15 @@
   <ul class="ExerciseFiltersListSubcategories"></ul>
   <div class="Pagination"></div>
   <div class="PaginationSubcategories"></div>
+  <div class="search-container visually-hidden">
+    <ul class="search-list"></ul>
+    <ul class="search-pagination"></ul>
+    <p class="no-results visually-hidden">
+      Unfortunately, no results were found. You may want to consider other
+      search options to find the exercise you are looking for. Our range is wide
+      and you have the opportunity to find more options that suit your needs.
+    </p>
+  </div>
 </section>
 
     <section class="DailyNorm">
