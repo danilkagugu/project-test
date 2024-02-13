@@ -10,10 +10,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
     />
     
-    <script type="module" crossorigin src="/project-test/assets/vendor-db25513e.js"></script>
-    <script type="module" crossorigin src="/project-test/assets/modal_window-a74575d8.js"></script>
-    <script type="module" crossorigin src="/project-test/assets/footer-375615b5.js"></script>
-    <link rel="stylesheet" href="/project-test/assets/modal_window-250b7ac2.css">
+    <script type="module" crossorigin src="/project-test/assets/vendor-8cce9181.js"></script>
+    <script type="module" crossorigin src="/project-test/assets/modal_window-c5af70b1.js"></script>
+    <script type="module" crossorigin src="/project-test/assets/footer-1e346475.js"></script>
+    <link rel="stylesheet" href="/project-test/assets/modal_window-b4ca3244.css">
     <link rel="stylesheet" href="/project-test/assets/vendor-e5212ee8.css">
   </head>
   <body>
@@ -157,27 +157,27 @@
         </li>
     </ul>
 </div>
-    <section class="container containerQuote">
-  <div class="Quote">
-    <div class="QuoteOne">
-      <div class="QuoteIconDivOne">
-        <svg class="QuoteIcon" width="18" height="20">
-          <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-running"></use>
-        </svg>
-      </div>
-      <div class="QuoteOfTheDay">
-        <h3 class="QuoteTitle">Quote of the day</h3>
-        <p class="QuoteText"></p>
-        <p class="QuoteAuthor"></p>
-      </div>
-      <!-- <div class="QuoteIconDivTwo">
-        <svg class="QuoteIcon" width="28" height="28">
-          <use href=""></use>
-        </svg>
-      </div> -->
+    <section class="container">
+  <div class="quote">
+    <div class="quote-icon-div-two">
+      <svg class="quote-icon-two">
+        <use href="/project-test/assets/symbol-defs-de218909.svg#icon-quote"></use>
+      </svg>
     </div>
-    <div class="QuoteTwo">
-      <div class="QuoteImg"></div>
+    <div class="quote-one">
+      <div class="quote-icon-div-one">
+        <svg class="quote-icon" width="18" height="20">
+          <use href="/project-test/assets/symbol-defs-de218909.svg#icon-running"></use>
+        </svg>
+      </div>
+      <div class="quote-of-the-day">
+        <h3 class="quote-title">Quote of the day</h3>
+        <p class="quoteText"></p>
+        <p class="quoteAuthor"></p>
+      </div>
+    </div>
+    <div class="quote-two">
+      <div class="quote-img"></div>
     </div>
   </div>
 </section>
@@ -205,7 +205,7 @@
         />
         <button class="SearchButton" type="submit">
           <svg class="IconSearch" width="18" height="18">
-            <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-search"></use>
+            <use href="/project-test/assets/symbol-defs-de218909.svg#icon-search"></use>
           </svg>
         </button>
       </form>
@@ -232,7 +232,7 @@
     <div class="DailyNormDiv">
       <div class="DailyNormIcon">
         <svg class="DailyNormSvg" width="20" height="20">
-          <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-dumbbell"></use>
+          <use href="/project-test/assets/symbol-defs-de218909.svg#icon-dumbbell"></use>
         </svg>
       </div>
       <div class="DailyNormDivInfo">
@@ -249,9 +249,8 @@
   </div>
 </section>
 
-    
     <footer class="FooterSection container">
-  <div class="FootVibe ">
+  <div class="FootVibe">
     <div class="FootInner">
       <a class="FootLogo" href="./index.html">energy.flow</a>
       <ul class="FooterUl">
@@ -264,7 +263,7 @@
             aria-label="Follow us on Facebook"
           >
             <svg class="FooterSvg" width="20" height="20">
-              <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-facebook"></use>
+              <use href="/project-test/assets/symbol-defs-de218909.svg#icon-facebook"></use>
             </svg>
           </a>
         </li>
@@ -275,7 +274,7 @@
             target="_blank"
           >
             <svg class="FooterSvg" width="20" height="20">
-              <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-instagram"></use>
+              <use href="/project-test/assets/symbol-defs-de218909.svg#icon-instagram"></use>
             </svg>
           </a>
         </li>
@@ -287,80 +286,72 @@
             target="_blank"
           >
             <svg class="FooterSvg" width="20" height="20">
-              <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-youtube"></use>
+              <use href="/project-test/assets/symbol-defs-de218909.svg#icon-youtube"></use>
             </svg>
           </a>
         </li>
       </ul>
     </div>
 
-    <div class="FooterSlogo"> 
+    <div class="FooterSlogo">
       <h2 class="FooterH">
         Transforming your <span class="accent">body</span> shape with us
       </h2>
       <div class="input-subs">
-      <p class="FooterP">Subscribe and learn about new exercises!</p>
-      <form class="FooterForm">
-        <label class="FooterLabel" for="modal-footer"  aria-label="modal-footer">
-          <input
-            class="FormInput"
-            type="email"
-            pattern="^[\\w\-]+(\\.[\\w\-]+)*@([\\w\-]+\\.)+[a-zA-Z]{2,7}$"
-            id="modal-footer"
-            name="modal-footer"
-            placeholder="Email"
-            required
-          />
-        </label>
-        <button class="ModalButton" type="submit">Send</button>
-      </form>
-    </div>
+        <p class="FooterP">Subscribe and learn about new exercises!</p>
+        <form class="FooterForm">
+          <label
+            class="FooterLabel"
+            for="modal-footer"
+            aria-label="modal-footer"
+          >
+            <input
+              class="FormInput"
+              type="email"
+              pattern="^[\\w\-]+(\\.[\\w\-]+)*@([\\w\-]+\\.)+[a-zA-Z]{2,7}$"
+              id="modal-footer"
+              name="modal-footer"
+              placeholder="Email"
+              required
+            />
+          </label>
+          <button class="ModalButton" type="submit">Send</button>
+        </form>
+      </div>
     </div>
   </div>
-  <div class="FooterText ">
+  <div class="FooterText">
     <p class="FooterPrivacy upper">Energy Flow. All rights reserved.</p>
-      <div class="regulations">
-      <a
-          class="FooterPolice policy"
-          href="#"
-          target="_blank"
-          >Privacy Policy</a
-        >
-        <p class="policy">/</p>
-        <a
-          class="FooterPolice policy"
-          href="#"
-          target="_blank"
-          >Terms of Service</a
-        >
+    <div class="regulations">
+      <a class="FooterPolice policy" href="#" target="_blank">Privacy Policy</a>
+      <p class="policy">/</p>
+      <a class="FooterPolice policy" href="#" target="_blank"
+        >Terms of Service</a
+      >
     </div>
-
   </div>
-
-  </div>
-  </footer>
-  <!-- loader -->
-  <div class="lodDiv">
-    <span class="loader"></span>
-  </div>
+</footer>
+<!-- loader -->
+<div class="lodDiv">
+  <span class="loader"></span>
+</div>
 
 <!-- scroll up -->
 <div class="ScrollUp visually-hidden">
   <button class="ScrollUpButton">
     <svg class="ScrollUpSvg mobile" width="20" height="20">
-      <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-arrow-scrollup"></use>
+      <use href="/project-test/assets/symbol-defs-de218909.svg#icon-arrow-scrollup"></use>
     </svg>
 
     <svg class="ScrollUpSvg tablet" width="40" height="40">
-      <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-arrow-scrollup"></use>
+      <use href="/project-test/assets/symbol-defs-de218909.svg#icon-arrow-scrollup"></use>
     </svg>
 
     <svg class="ScrollUpSvg decktop" width="50" height="50">
-      <use href="/project-test/assets/symbol-defs-940e27cf.svg#icon-arrow-scrollup"></use>
+      <use href="/project-test/assets/symbol-defs-de218909.svg#icon-arrow-scrollup"></use>
     </svg>
   </button>
 </div>
-
 
     <div class="Backdrop"></div>
 
