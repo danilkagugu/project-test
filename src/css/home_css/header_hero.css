@@ -1,26 +1,12 @@
-/* .container {
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-left: auto;
-  margin-right: auto;
-}
-@media screen and (min-width: 375px) {
-  .container {
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
-@media screen and (min-width: 768px) {
-  .container {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .container {
-  }
-} */
 .header-main {
   position: absolute;
   left: 0;
@@ -46,7 +32,7 @@
   justify-content: space-between;
   width: 100%;
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 15px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -55,6 +41,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 }
 @media screen and (min-width: 1440px) {
@@ -62,6 +50,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 48px;
+    padding-right: 48px;
   }
 }
 .header-nav {
@@ -122,15 +112,19 @@
   display: flex;
   padding: 8px;
   align-items: center;
+
   gap: 8px;
   border-radius: 10px;
   border: 1px solid rgba(126, 132, 127, 0.2);
 }
 @media screen and (min-width: 768px) {
   .mobile-icons-list {
+    width: 44px;
+    height: 44px;
     display: flex;
     padding: 8px;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     border-radius: 10px;
     border: 1px solid rgba(126, 132, 127, 0.2);
@@ -141,16 +135,20 @@
     display: flex;
     padding: 8px;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     border-radius: 10px;
     border: 1px solid rgba(126, 132, 127, 0.2);
   }
 }
+
 .mobile-fill {
   fill: #7e847f;
 }
 @media screen and (min-width: 768px) {
   .mobile-fill {
+    width: 28px;
+    height: 28px;
     fill: #7e847f;
   }
 }
@@ -158,6 +156,10 @@
   .mobile-fill {
     fill: #7e847f;
   }
+}
+.mobile-fill:hover,
+.mobile-fill:focus {
+  fill: #5f6560;
 }
 .mobil-button-menu {
   background-color: #e8e8e8;
@@ -176,7 +178,6 @@
 
 .mobil-button-menu-svg {
   fill: #7e847f;
-
   scale: 2;
 }
 @media screen and (min-width: 768px) {
@@ -235,7 +236,6 @@
   padding: 6px 26px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
 }
 @media screen and (min-width: 768px) {
   .header-link {
@@ -243,7 +243,6 @@
     padding: 6px 26px;
     justify-content: center;
     align-items: center;
-    gap: 10px;
   }
 }
 @media screen and (min-width: 1440px) {
@@ -252,7 +251,6 @@
     padding: 6px 26px;
     justify-content: center;
     align-items: center;
-    gap: 10px;
   }
 }
 
@@ -301,6 +299,8 @@
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+  margin: 0;
+  padding: 0 0 0 16px;
 }
 @media screen and (min-width: 768px) {
   .favorites {
@@ -328,6 +328,12 @@
 /* -----------new code */
 
 .hero-section {
+  margin-top: 20px;
+}
+@media screen and (min-width: 768px) {
+  .hero-section {
+    margin-top: 16px;
+  }
 }
 
 .hero-photo {
@@ -378,6 +384,10 @@
   border-radius: 30px;
   background: #fff;
   padding: 60px 20px 20px;
+}
+.hero-text-main,
+.hero-text {
+  animation: fadeIn 2s ease-in 1;
 }
 @media screen and (min-width: 768px) {
   .hero-container {
@@ -467,6 +477,7 @@
   line-height: 1.29;
   letter-spacing: -0.14px;
 }
+
 @media screen and (min-width: 768px) {
   .hero-text {
     font-size: 18px;
@@ -650,4 +661,36 @@
 
 .mobile-fill-modal {
   fill: #f6f6f6;
+}
+
+/* -------------- */
+/* ------2x images------- */
+
+/* mobile */
+
+@media screen and (min-resolution: 192dpi) and (max-width: 767px),
+  screen and (min-resolution: 2dppx) and (max-width: 767px),
+  screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
+  .hero-bg-img {
+    background-image: url('/img/mob/hero/women.hero.mob@2x.png');
+  }
+}
+
+/* tablet */
+
+@media screen and (min-resolution: 192dpi) and (min-width: 768px),
+  screen and (min-resolution: 2dppx) and (min-width: 768px),
+  screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
+  .hero-bg-img {
+    background-image: url('/img/tablet/hero/women.full.tab@2x.png');
+  }
+}
+
+/* desktop */
+@media screen and (min-resolution: 192dpi) and (min-width: 1280px),
+  screen and (min-resolution: 2dppx) and (min-width: 1280px),
+  screen and (min-device-pixel-ratio: 2) and (min-width: 1280px) {
+  .hero-bg-img {
+    background-image: url('/img/desktop/hero/women.desk@2x.png');
+  }
 }

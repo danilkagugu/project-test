@@ -1,4 +1,4 @@
-import sprite from '../../img/symbol-defs.svg';
+import sprite from '/img/symbol-defs.svg';
 const fullUrl = window.location.pathname;
 const lastSlashIndex = fullUrl.lastIndexOf('/');
 const result = fullUrl.substring(lastSlashIndex);
@@ -28,12 +28,11 @@ const favoritesContainerBlock = document.querySelector(
 const deleteCards = document.querySelectorAll('.favorites-list-item');
 
 // Функція для створення карти збережених улюблених елементів
-function createFavoriteCard(elem) {
+/*function createFavoriteCard(elem) {
   const markup = createFavoriteCardMarkup(elem);
-
   // Вставити створену карту в список улюблених
   favoritesList.insertAdjacentHTML('beforeend', markup);
-}
+}*/
 
 ///**перевіряє чи є в локалсторідж запис і якщо є, то малює картки, інакше показує повідомлення */
 if (result === '/favorites.html') {
@@ -44,7 +43,7 @@ if (result === '/favorites.html') {
     try {
       // Пройтися по кожному елементу і створити відповідну карту
       parsedItem.forEach(elem => {
-        createFavoriteCard(elem);
+        renderFavoriteCards();
       });
     } catch (error) {
       console.log(error.name);
@@ -54,18 +53,20 @@ if (result === '/favorites.html') {
 }
 
 /**пагінація */
+
 if (result === '/favorites.html') {
   document.addEventListener('DOMContentLoaded', function () {
     // Функція для відображення пагінації залежно від ширини екрану.
     function togglePagination() {
       const currentPage = window.location.pathname; // Отримання поточного шляху сторінки
       // Перевірка, чи поточна сторінка - '/favorites.html', і ширина екрану менше або дорівнює 767px.
+
       if (
         /*window.innerWidth <= 767 &&
         isFavoritesListVisible()*/
-        currentPage === '/Dyvani_programisty/favorites.html' &&
+        currentPage === '/favorites.html' &&
         window.innerWidth <= 767 &&
-        isFavoritesListVisibl
+        isFavoritesListVisible()
       ) {
         // Відображення пагінації для невеликих екранів на сторінці 2.
         paginationBlock.style.display = 'flex';
@@ -160,25 +161,29 @@ if (result === '/favorites.html') {
 
     // Function to handle scroll behavior
     function checkScroll() {
-      if (window.matchMedia('(min-width: 768px)').matches) {
+      const totalCardHeight = Array.from(favoritesList.children).reduce(
+        (acc, card) => acc + card.offsetHeight,
+        0
+      );
+
+      if (window.matchMedia('(min-width: 1440px)').matches) {
+        favoritesContainerBlock.style.maxHeight = '500px'; // Set maximum height if necessary
+      } else {
+        favoritesContainerBlock.style.maxHeight = 'none';
+      }
+
+      if (totalCardHeight > favoritesContainerBlock.offsetHeight) {
         favoritesContainerBlock.style.overflowY = 'scroll';
       } else {
         favoritesContainerBlock.style.overflowY = 'visible';
       }
 
-      if (window.matchMedia('(min-width: 1440px)').matches) {
-        favoritesContainerBlock.style.maxHeight = '480px'; // Set maximum height if necessary
-      } else {
-        favoritesContainerBlock.style.maxHeight = 'none';
-      }
-
-      // Зробити скролінг менш інтенсивним і більш плавним
       const scrollOptions = {
         behavior: 'smooth',
-        block: 'start', // Налаштування скролінгу починається від верхнього краю елементу
+        block: 'start',
       };
 
-      window.scrollBy(0, 10); // Змінити значення, яке ви вважаєте відповідним
+      window.scrollBy(0, 10);
     }
 
     // Перевірка поведінки прокрутки при першому завантаженні
@@ -201,58 +206,13 @@ if (result === '/favorites.html') {
   });
 }
 
-//**Ігорю на кнопку*/
-
-const favoritesButton = document.querySelector('.add-favorites');
-function toggleFavorite() {
-  if (favoritesButton.textContent.trim() == 'Add to favorites') {
-    parsedItem.push({
-      id: '64f389465ae26083f39b17df', //id
-      gifUrl: 'https://ftp.goit.study/img/power-pulse/gifs/0067.gif', //gif.src
-      name: 'barbell one arm snatch', //name.textContent
-      rating: '3.67', //rating.textContent
-      target: 'cardiovascular', //target.textContent
-      popular: '5548', //popular.textContent
-      bodyPart: 'shoulders', //bodyPart.textContent
-      equipment: 'barbell', //equipment.textContent
-      burnedCalories: '345', //burnedCalories.textContent
-      description:
-        'Located at the shoulders, deltoids have three heads: anterior, lateral, and posterior. They are involved in various arm movements like lifting and rotating. Exercises include shoulder press, lateral raises, and front raises.', //description.textContent
-    });
-    localStorage.setItem(storage, JSON.stringify(parsedItem));
-    favoritesButton.textContent = `Delete from favorites`;
-    //favoritesButton.innerHTML = `Delete from favorites`;
-  }
-  /*else {
-    const index = parsedItem.findIndex(item => item.id == id);
-    parsedItem.splice(index, 1);
-    localStorage.setItem(storage, JSON.stringify(parsedItem));
-    const fullCards = document.querySelectorAll('.favorites-list-item');
-
-    favoritesButton.textContent = `Add to favorities`;
-    //favoritesButton.innerHTML = `Add to favorities ${heartIcon}`;
-    if (document.querySelector(`.favorites-list-item[id="${id}"]`)) {
-      fullCards.forEach(elem => {
-        if (elem.id == id) cardForDelete = elem;
-      });
-      list.removeChild(cardForDelete);
-      if (!storageItem || parsedItem.length == 0) {
-        messageInfo.classList.add('is-open-message-info');
-        paginationBlock.classList.add('close');
-      }
-    }
-  }*/
-}
-
-favoritesButton.addEventListener('click', toggleFavorite);
-
 function handleFavoritesListClick(event) {
   if (
     event.target.classList.contains('favorites-btn-trash') ||
     event.target.classList.contains('favorites-icon-delete') ||
     event.target.classList.contains('favorites-icon-delete-use')
   ) {
-    const id = event.currentTarget.id;
+    const id = event.target.closest('li').id;
     deleteCard(id);
   }
 }
@@ -262,11 +222,11 @@ if (result === '/favorites.html') {
 }
 
 function deleteCard(id) {
-  const index = parsedItem.findIndex(item => item.id == id);
+  const index = parsedItem.findIndex(item => item._id == id);
   parsedItem.splice(index, 1);
   localStorage.setItem(storage, JSON.stringify(parsedItem));
   deleteCards.forEach(elem => {
-    if (elem.id == id) cardForDelete = elem;
+    if (elem._id == id) cardForDelete = elem;
   });
   if (cardForDelete) {
     favoritesList.removeChild(cardForDelete);
@@ -274,6 +234,7 @@ function deleteCard(id) {
   if (!storageItem || parsedItem.length == 0) {
     messageInfo.classList.add('is-open-message-info');
     paginationBlock.classList.add('close');
+    window.location.reload();
   }
   renderFavoriteCards();
 }
@@ -290,53 +251,62 @@ function renderFavoriteCards() {
 }
 
 function createFavoriteCardMarkup(elem) {
-  return `<li class="favorites-list-item" id="${elem.id}">
-        <div class="favorites-card-header">
-            <div class="favorites-workout">
-                <p>WORKOUT</p>
-            </div>
-            <button class="favorites-btn-trash" aria-label="trash" type="button">
-                <svg class="favorites-icon-delete" width="16" height="16" fill="none">
-                    <use class="favorites-icon-delete-use" href="${sprite}#icon-trash"></use>
-                </svg>
-            </button>
-            <button
-                data-id="${elem.id}"
-                class="favorites-btn-arrow"
-                aria-label="start"
-                type="button">Start
-                    <svg class="favorites-icon-arrow" width="14" height="14" stroke="#1B1B1B">
-                        <use class="favorites-icon-arrow-use" href="${sprite}#icon-arrow"></use>
-                    </svg>
-            </button>
-            </div>
-            <div class="favorites-main-container">
-    
-            <div class="favorite-icon-run-man">
-            <svg width="14" height="14">
-      <use href="${sprite}#icon-running"></use>
-    </svg></div>                  
-                <h3 class="favorites-name-part">${elem.name}</h3>
-            </div>
-            <div class="favorites-card-footer">
-            <ul class="favorites-card-footer-list">
-                <li class="favorites-card-footer-item">
-                    <div class="favorites-card-footer-wrapper">
-                        <h4 class="favorites-card-footer-title">Burned calories:</h4>
-                        <p class="favorites-card-footer-block">${elem.burnedCalories}/3min</p>
-                    </div>
-                    <div class="favorites-card-footer-wrapper">
-                        <h4 class="favorites-card-footer-title">Body part:</h4>
-                        <p class="favorites-card-footer-block">${elem.bodyPart}</p>
-                    </div>
-                    <div class="favorites-card-footer-wrapper">
-                        <h4 class="favorites-card-footer-title">Target:</h4>
-                        <p class="favorites-card-footer-block">${elem.target}</p>
-                    </div>
-                </li>
-            </ul>
+  return `<li class="favorites-card favorites-list-item" id ='${elem._id}'>
+      <div class='favorites-card-header'>
+        <div class='favorites-workout'>
+          <p class='workout-p'>workout</p>
+
+          <button class='favorites-btn-trash' type="button">
+          <svg class='favorites-icon-delete' width='16' height='16' fill="none">
+              <use class='favorites-icon-delete-use' href='${sprite}#icon-trash'></use>
+            </svg>
+          </button>
         </div>
+        
+          <button class="favorites-btn-arrow" type="button" >Start
+            <svg width='14' height='14'>
+              <use href='${sprite}#icon-arrow'></use>
+            </svg>
+          </button>
+      </div>
+
+      <div class='favorites-main-container'>
+        <div class='favorites-icon-run-man'>
+          <svg width='14' height='14'>
+            <use href='${sprite}#icon-running'></use>
+          </svg>
+        </div>
+        <p class='favorites-name-part'>${elem.name}</p>
+      </div>
+
+      <ul class="favorites-card-footer-list">
+        <li>
+          <p class='favorites-card-footer-title'>Burned calories: <span class='favorites-footer-text-value'>${elem.burnedCalories} / ${elem.time} min</span></p>
+        </li>
+        <li>
+          <p class='favorites-card-footer-title'>Body part: <span class='favorites-footer-text-value'>${elem.bodyPart}</span></p>
+        </li>
+        <li>
+          <p class='favorites-card-footer-title'>Target: <span class='favorites-footer-text-value'>${elem.target}</span></p>
+        </li>
+      </ul>
+
     </li>`;
 }
 
-export { toggleFavorite };
+//**Ігорю на кнопку*/
+
+// const favoritesButton = document.querySelector('.add-favorites');
+function toggleFavorite(obj) {
+  let parsedItem = JSON.parse(localStorage.getItem(storage)) || [];
+  let existingIndex = parsedItem.findIndex(item => item._id === obj._id);
+  console.log(existingIndex);
+  if (existingIndex === -1) {
+    parsedItem.push(obj);
+    localStorage.setItem(storage, JSON.stringify(parsedItem));
+  }
+}
+
+// favoritesButton.addEventListener('click', toggleFavorite);
+
+export { toggleFavorite, deleteCard };
